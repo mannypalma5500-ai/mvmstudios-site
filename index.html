@@ -67,37 +67,25 @@
     }
     .brand__name{font-weight:700; letter-spacing:.5px}
 
-    /* Video Hero Section */
-    .video-hero{
-        position: relative;
-        width: 100%;
-        height: 88vh; /* Set a specific height for the hero section */
-        overflow: hidden;
+    /* Video & Hero Layout */
+    .video-hero-layout{
+        background: var(--black);
+        padding-bottom: 72px;
     }
-    .video-hero video{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translate(-50%, -50%); /* Center the video */
-        object-fit: cover;
-        z-index: -1;
-        filter: brightness(0.65); /* Darken the video so text is readable */
+    .video-container{
+        padding: 0 20px;
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding-top: 24px;
     }
-    .hero-content{
-        position: relative;
-        z-index: 1;
-        height: 100%;
-        display: flex;
-        align-items: flex-end; /* Align content to the bottom of the section */
-        padding: 0 20px 10%; /* Add padding to push it up from the bottom */
+    .video-hero-layout h1{
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
     }
-    .hero-content h1{font-size: clamp(2.2rem, 4vw, 3.2rem);}
-    .hero-content p.lead{color:#e8e8e8; font-size:1.05rem}
-    .hero-content .badge{
+    .video-hero-layout p.lead{
+        color:#e8e8e8;
+        font-size:1.05rem;
+    }
+    .badge{
       display:inline-block; background:rgba(41,121,255,.15); color:#cfe0ff;
       border:1px solid rgba(41,121,255,.35); padding:.18rem .5rem; border-radius:6px; font-size:.82rem
     }
@@ -110,13 +98,14 @@
     /* How it works */
     .steps{display:grid; gap:18px; grid-template-columns:repeat(3,1fr); margin-top:22px}
     .step h3{font-size:1.2rem}
+    .card{
+      background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;
+    }
     
     /* Pricing */
     .pricing{display:grid; gap:20px; grid-template-columns:repeat(3,1fr); margin-top:24px}
-    .price-card{
-      background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius); box-shadow:var(--shadow); padding:24px;
-    }
+    .price-card{padding:24px}
     .price{font-size:2rem; font-weight:700}
     .most-popular{
       outline:2px solid var(--blue);
@@ -140,11 +129,7 @@
 
     /* Proof */
     .proof-grid{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
-    .proof-card{
-      background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;
-      min-height:120px;
-    }
+    .proof-card{min-height:120px}
 
     /* About */
     .about{display:grid; gap:24px; grid-template-columns:1.1fr .9fr}
@@ -160,7 +145,6 @@
     /* Responsive */
     @media (max-width: 980px){
       .steps, .pricing, .proof-grid, .about, .booking{grid-template-columns:1fr}
-      .video-hero{height: 72vh;}
     }
   </style>
 </head>
@@ -178,17 +162,19 @@
     </div>
   </header>
 
-  <section id="top" class="video-hero">
-    <video
-      src="https://customer-ulmczq7ing7531ia.cloudflarestream.com/db0c25ff38d3df94350d83caae35e577/manifest/video.m3u8"
-      autoplay
-      muted
-      loop
-      playsinline
-      poster="https://customer-ulmczq7ing7531ia.cloudflarestream.com/db0c25ff38d3df94350d83caae35e577/thumbnails/thumbnail.jpg?time=2s&height=600"
-    ></video>
-    <div class="container hero-content">
-      <div>
+  <main id="top" class="video-hero-layout">
+    <div class="video-container">
+      <div style="position: relative; padding-top: 56.25%;">
+        <iframe
+          src="https://customer-oixmce71ng7351ia.cloudflarestream.com/db0c25ff3b83df94350d83caae35e577/iframe?muted=true&preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-oixmce71ng7351ia.cloudflarestream.com%2Fdb0c25ff3b83df94350d83caae35e577%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+          loading="lazy"
+          style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+          allowfullscreen="true"
+        ></iframe>
+      </div>
+    </div>
+    <div class="container" style="padding-top: 40px">
         <p><span class="badge">One shoot → weeks of content</span></p>
         <h1>One Shoot. A Month of Content. Zero Headaches.</h1>
         <p class="lead">
@@ -199,8 +185,7 @@
           <a class="btn btn-outline" href="#packages">See Packages</a>
         </div>
       </div>
-    </div>
-  </section>
+  </main>
 
   <section id="how">
     <div class="container">
