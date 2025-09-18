@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MVM Studios</title>
+</head>
+<body>
+  <h1 id="hero-headline"></h1>
+
+  <script>
+    fetch('/content/site.json')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('hero-headline').textContent = data.headline;
+      });
+  </script>
+</body>
+</html>
