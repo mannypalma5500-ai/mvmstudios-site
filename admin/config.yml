@@ -16,8 +16,16 @@ collections:
         label: "Main Site Content"
         name: "site"
         fields:
-          - { label: "Headline",     name: "headline",     widget: "string" }
-          - { label: "Subheadline",  name: "subheadline",  widget: "text" }
-          - { label: "Button Text",  name: "buttonText",   widget: "string", default: "Book a Strategy Call" }
-          - { label: "Button Link",  name: "buttonLink",   widget: "string", default: "#booking" }
-          - { label: "Hero Image",   name: "image",        widget: "image", required: false }
+  - { label: "Headline", name: "headline", widget: "string" }
+  - { label: "Subheadline", name: "subheadline", widget: "text" }
+  - { label: "Button Text", name: "buttonText", widget: "string", default: "Book a Strategy Call" }
+  - { label: "Button Link", name: "buttonLink", widget: "string", default: "#booking" }
+  - { label: "Hero Image", name: "image", widget: "image", required: false }
+  - label: "How It Works"
+    name: "how"
+    widget: "list"
+    summary: "{{fields.title}} – {{fields.description}}"
+    hint: "Add 3 steps: Plan, Shoot, Content Machine."
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
