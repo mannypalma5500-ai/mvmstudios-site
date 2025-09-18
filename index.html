@@ -119,16 +119,15 @@
   </header>
 
   <!-- HERO WITH CLOUDFLARE STREAM -->
-  <section class="hero-video" id="top" aria-label="Intro">
-    <!-- Use your Cloudflare Stream video UID here -->
-    <stream
-      src="dbc25ff38d3df94350d83caae35e577"
-      autoplay
-      muted
-      loop
-      playsinline
-    ></stream>
-
+<section class="hero-video" id="top" aria-label="Intro">
+  <stream 
+    src="db0c25ff38d3df94350d83caae35e577" 
+    autoplay 
+    muted 
+    loop 
+    playsinline>
+  </stream>
+  
     <div class="container hero-overlay">
       <div>
         <span class="hero-badge">One shoot → weeks of content</span>
@@ -304,5 +303,6 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="https://embed.cloudflarestream.com/embed/sdk.latest.js" defer></script>
 </body>
 </html>
