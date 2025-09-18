@@ -1,143 +1,386 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <!-- Basic SEO -->
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MVM Studios</title>
-  <link rel="preconnect" href="https://identity.netlify.com"/>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <title>MVM Studios — One Shoot. A Month of Content. Zero Headaches.</title>
+  <meta name="description" content="MVM Studios turns one monthly shoot into weeks of strategic, on-brand content for dentists and car dealerships. We plan, shoot, edit, caption, schedule, and report—so you don't have to." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MVM Studios — One Shoot. A Month of Content. Zero Headaches." />
+  <meta property="og:description" content="Done-for-you social content systems: plan, shoot, edit, schedule, report." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mvmstudios.com/" />
+  <meta property="og:image" content="https://mvmstudios.com/og-image.jpg" /> <!-- TODO: replace -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { --bg:#0b0b0c; --panel:#17181b; --muted:#a9acb3; --text:#f5f7fa; --primary:#2f6df6; --border:#24262b; }
+    :root{
+      --black:#000000;
+      --white:#ffffff;
+      --charcoal:#1C1C1E;
+      --blue:#2979FF;
+      --orange:#FF6B35;
+      --emerald:#006644;
+      --muted:#8A8A8A;
+      --maxw:1140px;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(0,0,0,.12);
+    }
+
+    /* Reset-ish */
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif}
-    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-    header.nav{position:sticky;top:0;background:rgba(11,11,12,0.7);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--border);z-index:10}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .badge{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;background:#111;border:1px solid var(--border);font-weight:800}
-    .btn{display:inline-block;padding:12px 18px;border-radius:12px;border:1px solid var(--border);background:#121317;color:var(--text);text-decoration:none;font-weight:600}
-    .btn.primary{background:var(--primary);border-color:transparent;color:#fff}
-    .btn.ghost{background:transparent}
-    .hero{position:relative;min-height:70vh;display:grid;place-items:center;overflow:hidden}
-    .hero::before{content:"";position:absolute;inset:0;background:
-      radial-gradient(1200px 600px at 20% 0%, #212331 0%, transparent 60%),
-      radial-gradient(1200px 600px at 80% 20%, #1a222f 0%, transparent 60%),
-      linear-gradient(180deg,#0b0b0c, #0b0b0c 60%, #0b0b0c 100%)}
-    .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(1.1);opacity:.9}
-    .hero .content{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
-    @media (max-width:900px){ .hero .content{grid-template-columns:1fr} }
-    h1{font-size:clamp(32px,4.8vw,54px);line-height:1.1;margin:0 0 14px}
-    .sub{color:var(--muted);margin:0 0 18px;max-width:58ch}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 8px}
-    .note{margin-top:10px;color:#cfd2d9;font-size:14px}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:18px}
-    .chip{display:inline-block;padding:4px 10px;border-radius:999px;background:#111;border:1px solid var(--border);color:#cbd0d8;font-size:12px;font-weight:700;margin-bottom:8px}
-    .section{padding:60px 0;border-top:1px solid var(--border)}
-    .section h2{margin:0 0 16px;font-size:26px}
-    .grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
-    .col-4{grid-column:span 4} .col-12{grid-column:span 12}
-    @media (max-width:900px){ .col-4{grid-column:span 12} }
-    .muted{color:var(--muted)}
-    footer{padding:36px 0;border-top:1px solid var(--border);color:#a6abb4}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--white);
+      background:var(--black);
+      line-height:1.6;
+    }
+    h1,h2,h3{font-family:"Playfair Display", Georgia, "Times New Roman", serif; line-height:1.2; margin:0 0 .5rem}
+    p{margin:.5rem 0 1rem}
+
+    a{color:var(--blue); text-decoration:none}
+    a:hover{opacity:.9}
+
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+    .btn{
+      display:inline-block; padding:.9rem 1.2rem; border-radius:999px;
+      background:var(--blue); color:#fff; font-weight:600; transition:filter .2s ease;
+      border:0;
+    }
+    .btn:hover{filter:brightness(.95)}
+    .btn-outline{
+      background:transparent; border:1.5px solid var(--white); color:var(--white)
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(180%) blur(8px);
+      background:rgba(0,0,0,.7); border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{display:flex; align-items:center; gap:.6rem; color:#fff}
+    .brand__logo{
+      width:36px; height:36px; border:1.5px solid #fff; border-radius:8px;
+      display:grid; place-items:center; font-family:"Playfair Display",serif; font-weight:700;
+    }
+    .brand__name{font-weight:700; letter-spacing:.5px}
+
+    /* Hero */
+    .hero{
+      padding:96px 0 64px; background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(41,121,255,.18), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,107,53,.14), transparent 60%),
+        var(--black);
+    }
+    .hero .grid{display:grid; gap:24px; grid-template-columns:1.1fr .9fr}
+    .hero h1{font-size: clamp(2.2rem, 4vw, 3.2rem);}
+    .hero p.lead{color:#e8e8e8; font-size:1.05rem}
+    .card{
+      background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;
+    }
+    .hero .card{min-height:220px}
+
+    /* Sections */
+    section{padding:72px 0; border-top:1px solid rgba(255,255,255,.06)}
+    .section-title{font-size:1.9rem; margin-bottom:12px}
+    .muted{color:#cfcfcf}
+
+    /* How it works */
+    .steps{display:grid; gap:18px; grid-template-columns:repeat(3,1fr); margin-top:22px}
+    .step h3{font-size:1.2rem}
+    .badge{
+      display:inline-block; background:rgba(41,121,255,.15); color:#cfe0ff;
+      border:1px solid rgba(41,121,255,.35); padding:.18rem .5rem; border-radius:6px; font-size:.82rem
+    }
+
+    /* Pricing */
+    .pricing{display:grid; gap:20px; grid-template-columns:repeat(3,1fr); margin-top:24px}
+    .price-card{padding:24px}
+    .price{font-size:2rem; font-weight:700}
+    .most-popular{
+      outline:2px solid var(--blue);
+      box-shadow:0 0 0 6px rgba(41,121,255,.12);
+      position:relative;
+    }
+    .most-popular::before{
+      content:"Most Popular";
+      position:absolute; top:14px; right:14px;
+      background:var(--blue); color:#fff; font-size:.75rem; font-weight:700;
+      padding:.24rem .5rem; border-radius:999px;
+    }
+    ul.features{list-style:none; padding:0; margin:12px 0}
+    ul.features li{display:flex; gap:.5rem; align-items:flex-start; margin:.35rem 0}
+    .check{
+      width:18px; height:18px; border-radius:50%;
+      background:linear-gradient(135deg, var(--emerald), #0c8f66);
+      display:grid; place-items:center; flex:0 0 18px;
+    }
+    .check svg{width:12px; height:12px}
+
+    /* Proof */
+    .proof-grid{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
+    .proof-card{min-height:120px}
+
+    /* About */
+    .about{display:grid; gap:24px; grid-template-columns:1.1fr .9fr}
+
+    /* Contact / Calendly */
+    .booking{display:grid; gap:24px; grid-template-columns:1.2fr .8fr}
+    .contact-list{list-style:none; padding:0; margin:0}
+    .contact-list li{margin:.4rem 0}
+
+    /* Footer */
+    footer{padding:28px 0; color:#b9b9b9; font-size:.9rem}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero .grid, .steps, .pricing, .proof-grid, .about, .booking{grid-template-columns:1fr}
+      .hero{padding:72px 0 48px}
+    }
   </style>
 </head>
 <body>
 
-  <!-- Top nav -->
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <div class="brand">
-        <span class="badge">M</span> MVM Studios
-      </div>
-      <a class="btn primary" id="topCta" href="#booking">Book a Call</a>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#top">
+        <span class="brand__logo">M</span>
+        <span class="brand__name">MVM Studios</span>
+      </a>
+      <nav>
+        <a class="btn" href="#booking">Book a Call</a>
+      </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <img id="heroImage" class="bg" alt="">
-    <div class="wrap content">
-      <div>
-        <h1 id="headline">Loading…</h1>
-        <p class="sub" id="subheadline"></p>
-        <div class="cta-row">
-          <a id="cta" class="btn primary" href="#"><span id="ctaText">Book a Strategy Call</span></a>
-          <a class="btn ghost" href="#packages">See Packages</a>
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="grid">
+        <div>
+          <h1>One Shoot. A Month of Content. Zero Headaches.</h1>
+          <p class="lead">
+            We specialize in <strong>dentists</strong> and <strong>car dealerships</strong>.
+            One monthly shoot becomes weeks of strategic, on-brand posts—planned, edited, captioned, scheduled, and reported.
+          </p>
+          <div style="display:flex; gap:12px; margin-top:16px">
+            <a class="btn" href="#booking">Book a Strategy Call</a>
+            <a class="btn btn-outline" href="#packages">See Packages</a>
+          </div>
+          <p class="muted" style="margin-top:12px">Serving San Diego & SoCal • Remote options available</p>
         </div>
-        <div class="note" id="geoNote">Serving San Diego &amp; SoCal • Remote options available</div>
+        <div class="card" aria-label="Highlights">
+          <p><span class="badge">Outcome</span></p>
+          <h3 style="margin-top:6px">Consistent, professional presence without stealing your time.</h3>
+          <p class="muted">You run the business. We run the content machine—planning, capture, edits, captions, scheduling, analytics.</p>
+          <p class="muted">No guesswork. No missed weeks. No “what do we post?”</p>
+        </div>
       </div>
+    </div>
+  </main>
 
-      <div class="card">
-        <div class="chip">Outcome</div>
-        <h3 style="margin:0 0 8px">Consistent, professional presence without stealing your time.</h3>
-        <p class="muted" style="margin:0">
-          You run the business. We run the content machine—planning, capture, edits, captions, scheduling, analytics.
-          No guesswork. No missed weeks. No “what do we post?”
+  <!-- How it Works -->
+  <section id="how">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="muted">Simple system. Minimal time from you. Maximum signal to your market.</p>
+
+      <div class="steps">
+        <div class="card step">
+          <h3>1) Plan</h3>
+          <p>We align on goals, audience, voice, offers, and calendar. You approve the shot list and content plan before the shoot.</p>
+        </div>
+        <div class="card step">
+          <h3>2) Shoot</h3>
+          <p>One monthly shoot captures your people, expertise, inventory, and stories. We direct, you stay in flow.</p>
+        </div>
+        <div class="card step">
+          <h3>3) Content Machine</h3>
+          <p>We edit, caption, schedule, and report so you get weeks of high-quality content with zero headaches.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages" aria-labelledby="packages-title">
+    <div class="container">
+      <h2 id="packages-title" class="section-title">Packages</h2>
+      <p class="muted">Transparent, scalable retainers. Retainers only (no one-offs unless double rate).</p>
+
+      <div class="pricing">
+        <!-- IGNITE -->
+        <div class="card price-card">
+          <h3>IGNITE</h3>
+          <p class="muted">For consistent visibility without the overhead.</p>
+          <p class="price">$1,250<span style="font-size:.9rem; color:#cfcfcf"> / month</span></p>
+          <ul class="features">
+            <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 1 half-day shoot (up to 3 hrs)</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 8–10 short-form videos</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Captions provided</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Files delivered (you post)</li>
+          </ul>
+          <a class="btn" href="#booking">Get Started</a>
+        </div>
+
+        <!-- INFLUENCE -->
+        <div class="card price-card most-popular">
+          <h3>INFLUENCE</h3>
+          <p class="muted">Hands-off, done-for-you presence.</p>
+          <p class="price">$2,250<span style="font-size:.9rem; color:#cfcfcf"> / month</span></p>
+          <ul class="features">
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> 1 full shoot day (up to 6 hrs)</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> 16–20 short-form videos</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Captions + hashtags + CTAs</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Scheduling & posting on 2 platforms</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Monthly analytics dashboard + insights call</li>
+          </ul>
+          <a class="btn" href="#booking">Choose Influence</a>
+        </div>
+
+        <!-- ICON -->
+        <div class="card price-card">
+          <h3>ICON</h3>
+          <p class="muted">For brands that want to dominate.</p>
+          <p class="price">$3,750<span style="font-size:.9rem; color:#cfcfcf"> / month</span></p>
+          <ul class="features">
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> 2 full shoot days (or one extended)</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> 25–30 short-form + 5 long-form edits</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Multi-platform posting (IG/FB/TikTok/Shorts)</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Advanced analytics + competitor benchmarking</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Paid ads setup & management (to $2,000 spend)</li>
+          </ul>
+          <a class="btn" href="#booking">Talk to Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section id="proof" aria-labelledby="proof-title">
+    <div class="container">
+      <h2 id="proof-title" class="section-title">Proof</h2>
+      <p class="muted">Client wins and case studies are being compiled now. In the meantime, see behind-the-scenes and recent edits on our socials.</p>
+      <div class="proof-grid" role="list">
+        <a class="card proof-card" role="listitem" href="#" aria-label="Instagram (placeholder)"> <!-- TODO: replace link -->
+          <h3>Instagram</h3>
+          <p class="muted">BTS, edits, client reactions.</p>
+        </a>
+        <a class="card proof-card" role="listitem" href="#" aria-label="TikTok (placeholder)"> <!-- TODO: replace link -->
+          <h3>TikTok</h3>
+          <p class="muted">Short-form ideas and trends.</p>
+        </a>
+        <a class="card proof-card" role="listitem" href="#" aria-label="YouTube (placeholder)"> <!-- TODO: replace link -->
+          <h3>YouTube</h3>
+          <p class="muted">Long-form, walk-throughs, reviews.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container about">
+      <div>
+        <h2 id="about-title" class="section-title">About MVM Studios</h2>
+        <p>
+          We’re a content systems studio. Our niche is turning <strong>one monthly shoot</strong> into
+          a full pipeline of <strong>strategic, on-brand content</strong>—planned, edited, scheduled, and measured.
         </p>
+        <p>
+          MVM is led by Manny Palma—a Navy veteran with disciplined execution, real exposure to the
+          <strong>dental world</strong>, and <strong>seven years in dealership internet sales</strong>.
+          We combine production quality with sales truth: content that actually builds trust and moves inventory.
+        </p>
+        <p class="muted">Translation: no fluff, no “random posts.” Just consistent presence that makes you impossible to ignore.</p>
+      </div>
+      <div class="card">
+        <h3>Why clients choose us</h3>
+        <ul class="features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Minimal time drain (we run the machine)</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Strategy first (calendar before camera)</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Done-for-you scheduling & analytics</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3"/></svg></span> Clear pricing, agency-level polish</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="section">
-    <div class="wrap">
-      <h2>How It Works</h2>
-      <div class="grid" id="howGrid"></div>
+  <!-- Final CTA -->
+  <section id="cta" aria-label="Book">
+    <div class="container">
+      <div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+        <div>
+          <h2 class="section-title" style="margin:0">Ready to turn one shoot into a month of content?</h2>
+          <p class="muted" style="margin:6px 0 0">Stop guessing. Start scaling your presence.</p>
+        </div>
+        <a class="btn" href="#booking">Book a Strategy Call</a>
+      </div>
     </div>
   </section>
 
-  <!-- PACKAGES placeholder (we can wire later) -->
-  <section class="section" id="packages">
-    <div class="wrap">
-      <h2>Packages</h2>
-      <p class="muted">We’ll wire IGNITE / INFLUENCE / ICON next. For now, book a call and we’ll align on scope.</p>
-    </div>
-  </section>
+  <!-- Booking / Contact -->
+  <section id="booking" aria-labelledby="booking-title">
+    <div class="container booking">
+      <div>
+        <h2 id="booking-title" class="section-title">Book a Strategy Call</h2>
+        <p class="muted">Pick a time that works for you. We’ll audit your current presence and map a one-shoot content plan.</p>
 
-  <!-- BOOKING -->
-  <section class="section" id="booking">
-    <div class="wrap">
-      <h2>Book a Strategy Call</h2>
-      <p class="muted">Plug your Calendly link in the button above; we can embed it here next.</p>
+        <!-- Calendly Embed -->
+        <!-- TODO: Replace data-url with your actual Calendly scheduling link -->
+        <div class="card" style="overflow:hidden">
+          <div style="height:600px; position:relative">
+            <iframe src="https://calendly.com/your-username/strategy-call" title="Calendly Scheduling"
+              style="position:absolute; top:0; left:0; width:100%; height:100%; border:0"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card" aria-label="Contact details">
+        <h3>Contact</h3>
+        <ul class="contact-list">
+          <li><strong>Email:</strong> <a href="mailto:hello@mvmstudios.com">hello@mvmstudios.com</a> <!-- TODO: set mailbox --></li>
+          <li><strong>Location:</strong> San Diego, CA</li>
+          <li><strong>Instagram:</strong> <a href="#">@mvmstudios</a> <!-- TODO: link --></li>
+          <li><strong>LinkedIn:</strong> <a href="#">MVM Studios</a> <!-- TODO: link --></li>
+        </ul>
+
+        <!-- Lightweight contact form (optional) -->
+        <form style="margin-top:12px" action="mailto:hello@mvmstudios.com" method="post" enctype="text/plain">
+          <label for="name">Name</label>
+          <input id="name" name="name" required
+                 style="width:100%; margin:.25rem 0 .6rem; padding:.7rem; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:#111; color:#fff">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required
+                 style="width:100%; margin:.25rem 0 .6rem; padding:.7rem; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:#111; color:#fff">
+          <label for="msg">Message</label>
+          <textarea id="msg" name="message" rows="4"
+                 style="width:100%; margin:.25rem 0 1rem; padding:.7rem; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:#111; color:#fff"></textarea>
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </aside>
     </div>
   </section>
 
   <footer>
-    <div class="wrap">© <span id="yy"></span> MVM Studios • All rights reserved</div>
+    <div class="container" role="contentinfo">
+      © <span id="year"></span> MVM Studios. All rights reserved.
+    </div>
   </footer>
 
   <script>
-    document.getElementById('yy').textContent = new Date().getFullYear();
-
-    fetch('/content/site.json', { cache: 'no-cache' })
-      .then(r => r.json())
-      .then(data => {
-        // Hero
-        document.getElementById('headline').textContent = data.headline || '';
-        document.getElementById('subheadline').textContent = data.subheadline || '';
-        document.getElementById('ctaText').textContent = data.buttonText || 'Book a Strategy Call';
-        document.getElementById('cta').href = data.buttonLink || '#booking';
-        document.getElementById('topCta').href = data.buttonLink || '#booking';
-        if (data.image) {
-          document.getElementById('heroImage').src = data.image;
-        } else {
-          document.getElementById('heroImage').style.display = 'none';
-        }
-
-        // How It Works
-        const grid = document.getElementById('howGrid');
-        if (Array.isArray(data.how) && grid) {
-          grid.innerHTML = data.how.map(s => `
-            <div class="col-4">
-              <div class="card">
-                <h3 style="margin:0 0 6px">${s.title || ''}</h3>
-                <p class="muted" style="margin:0">${s.description || ''}</p>
-              </div>
-            </div>
-          `).join('');
-        }
-      })
-      .catch(e => console.error(e));
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
