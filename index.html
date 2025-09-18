@@ -157,22 +157,16 @@
   </header>
 
   <main id="top">
-   <div style="position:relative; overflow:hidden; padding-bottom:56.25%; max-width:1400px; margin:0 auto">
-    <video
-        id="heroVideo"
-        width="100%"
-        height="100%"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto"
-        poster="https://customer-oixmce71ng7351ia.cloudflarestream.com/db0c25ff3b83df94350d83caae35e577/thumbnails/thumbnail.jpg?time=0s&height=600"
-        style="position:absolute; top:0; left:0;"
-    >
-      <source src="https://customer-oixmce71ng7351ia.cloudflarestream.com/db0c25ff3b83df94350d83caae35e577/manifest/video.m3u8" type="application/x-mpegURL">
-    </video>
-</div>
+    <div style="position:relative; overflow:hidden; padding-bottom:56.25%; max-width:1400px; margin:0 auto">
+      <iframe
+        src="https://customer-oixmce71ng7351ia.cloudflarestream.com/db0c25ff3b83df94350d83caae35e577/iframe?muted=true&preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-oixmce71ng7351ia.cloudflarestream.com%2Fdb0c25ff3b83df94350d83caae35e577%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+        loading="lazy"
+        style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+        allowfullscreen="true"
+        playsinline="true"
+      ></iframe>
+    </div>
 
     <div class="hero">
       <div class="container">
