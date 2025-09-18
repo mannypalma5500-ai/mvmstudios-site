@@ -53,20 +53,6 @@
       background:transparent; border:1.5px solid var(--white); color:var(--white)
     }
 
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:saturate(180%) blur(8px);
-      background:rgba(0,0,0,.7); border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
-    .brand{display:flex; align-items:center; gap:.6rem; color:#fff}
-    .brand__logo{
-      width:36px; height:36px; border:1.5px solid #fff; border-radius:8px;
-      display:grid; place-items:center; font-family:"Playfair Display",serif; font-weight:700;
-    }
-    .brand__name{font-weight:700; letter-spacing:.5px}
-
     /* Video Hero Section */
     .video-hero{
         position: relative;
@@ -74,18 +60,17 @@
         height: 88vh; /* Set a specific height for the hero section */
         overflow: hidden;
     }
-    .video-hero video{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translate(-50%, -50%); /* Center the video */
-        object-fit: cover;
-        z-index: -1;
-        filter: brightness(0.65); /* Darken the video so text is readable */
+    .video-hero iframe{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%); /* Center the video */
+      z-index: -1;
+      filter: brightness(0.65); /* Darken the video so text is readable */
     }
     .hero-content{
         position: relative;
@@ -179,14 +164,13 @@
   </header>
 
   <section id="top" class="video-hero">
-    <video
-      src="https://customer-ulmczq7ing7531ia.cloudflarestream.com/db0c25ff38d3df94350d83caae35e577/manifest/video.m3u8"
-      autoplay
-      muted
-      loop
-      playsinline
-      poster="https://customer-ulmczq7ing7531ia.cloudflarestream.com/db0c25ff38d3df94350d83caae35e577/thumbnails/thumbnail.jpg"
-    ></video>
+    <iframe
+        src="https://customer-oixmce71ng7351ia.cloudflarestream.com/db0c25ff3b83df94350d83caae35e577/iframe?muted=true&preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-oixmce71ng7351ia.cloudflarestream.com%2Fdb0c25ff3b83df94350d83caae35e577%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+        loading="lazy"
+        style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+        allowfullscreen="true"
+    ></iframe>
     <div class="container hero-content">
       <div>
         <p><span class="badge">One shoot → weeks of content</span></p>
