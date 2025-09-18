@@ -71,7 +71,7 @@
     .video-hero{
         position: relative;
         width: 100%;
-        height: 88vh; /* Slightly shorter than 100vh so the next section sits closer */
+        height: 88vh; /* Set a specific height for the hero section */
         overflow: hidden;
     }
     .video-hero video{
@@ -82,7 +82,7 @@
         min-height: 100%;
         width: auto;
         height: auto;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); /* Center the video */
         object-fit: cover;
         z-index: -1;
         filter: brightness(0.65); /* Darken the video so text is readable */
@@ -92,25 +92,15 @@
         z-index: 1;
         height: 100%;
         display: flex;
-        align-items: center;
-        padding: 0 20px;
+        align-items: flex-end; /* Align content to the bottom of the section */
+        padding: 0 20px 10%; /* Add padding to push it up from the bottom */
     }
-
-    /* Hero */
-    .hero{
-      padding:96px 0 64px; background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(41,121,255,.18), transparent 60%),
-        radial-gradient(1000px 500px at 90% 0%, rgba(255,107,53,.14), transparent 60%),
-        var(--black);
+    .hero-content h1{font-size: clamp(2.2rem, 4vw, 3.2rem);}
+    .hero-content p.lead{color:#e8e8e8; font-size:1.05rem}
+    .hero-content .badge{
+      display:inline-block; background:rgba(41,121,255,.15); color:#cfe0ff;
+      border:1px solid rgba(41,121,255,.35); padding:.18rem .5rem; border-radius:6px; font-size:.82rem
     }
-    .hero .grid{display:grid; gap:24px; grid-template-columns:1.1fr .9fr}
-    .hero h1{font-size: clamp(2.2rem, 4vw, 3.2rem);}
-    .hero p.lead{color:#e8e8e8; font-size:1.05rem}
-    .card{
-      background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;
-    }
-    .hero .card{min-height:220px}
 
     /* Sections */
     section{padding:72px 0; border-top:1px solid rgba(255,255,255,.06)}
@@ -120,14 +110,13 @@
     /* How it works */
     .steps{display:grid; gap:18px; grid-template-columns:repeat(3,1fr); margin-top:22px}
     .step h3{font-size:1.2rem}
-    .badge{
-      display:inline-block; background:rgba(41,121,255,.15); color:#cfe0ff;
-      border:1px solid rgba(41,121,255,.35); padding:.18rem .5rem; border-radius:6px; font-size:.82rem
-    }
-
+    
     /* Pricing */
     .pricing{display:grid; gap:20px; grid-template-columns:repeat(3,1fr); margin-top:24px}
-    .price-card{padding:24px}
+    .price-card{
+      background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:24px;
+    }
     .price{font-size:2rem; font-weight:700}
     .most-popular{
       outline:2px solid var(--blue);
@@ -151,7 +140,11 @@
 
     /* Proof */
     .proof-grid{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
-    .proof-card{min-height:120px}
+    .proof-card{
+      background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;
+      min-height:120px;
+    }
 
     /* About */
     .about{display:grid; gap:24px; grid-template-columns:1.1fr .9fr}
@@ -166,8 +159,7 @@
 
     /* Responsive */
     @media (max-width: 980px){
-      .hero .grid, .steps, .pricing, .proof-grid, .about, .booking{grid-template-columns:1fr}
-      .hero{padding:72px 0 48px}
+      .steps, .pricing, .proof-grid, .about, .booking{grid-template-columns:1fr}
       .video-hero{height: 72vh;}
     }
   </style>
@@ -186,7 +178,7 @@
     </div>
   </header>
 
-  <section class="video-hero">
+  <section id="top" class="video-hero">
     <video
       src="https://customer-ulmczq7ing7531ia.cloudflarestream.com/db0c25ff38d3df94350d83caae35e577/manifest/video.m3u8"
       autoplay
@@ -197,6 +189,7 @@
     ></video>
     <div class="container hero-content">
       <div>
+        <p><span class="badge">One shoot → weeks of content</span></p>
         <h1>One Shoot. A Month of Content. Zero Headaches.</h1>
         <p class="lead">
           Built for San Diego businesses. From one monthly shoot, we deliver weeks of content that tells your story—planned, produced, captioned, scheduled, and reported.
@@ -205,7 +198,6 @@
           <a class="btn" href="#booking">Book a Strategy Call</a>
           <a class="btn btn-outline" href="#packages">See Packages</a>
         </div>
-        <p class="muted" style="margin-top:12px">Serving San Diego & SoCal • Remote options available</p>
       </div>
     </div>
   </section>
