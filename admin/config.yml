@@ -2,12 +2,11 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/static/uploads"
+media_folder: "static/uploads"     # where uploads are stored in the repo
+public_folder: "/static/uploads"   # how the site references them
 
-publish_mode: editorial_workflow
-
-site_url: "https://mvmstudios.com"
+# IMPORTANT: do NOT include "publish_mode: editorial_workflow".
+# Leaving it out means Publish goes straight to main (no drafts).
 
 collections:
   - name: "site"
@@ -17,4 +16,8 @@ collections:
         label: "Main Site Content"
         name: "site"
         fields:
-          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Headline",     name: "headline",     widget: "string" }
+          - { label: "Subheadline",  name: "subheadline",  widget: "text" }
+          - { label: "Button Text",  name: "buttonText",   widget: "string", default: "Book a Strategy Call" }
+          - { label: "Button Link",  name: "buttonLink",   widget: "string", default: "#booking" }
+          - { label: "Hero Image",   name: "image",        widget: "image", required: false }
