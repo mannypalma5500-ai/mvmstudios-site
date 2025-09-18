@@ -1,40 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MVM Studios</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <h1>One Shoot. A Month of Content. Zero Headaches.</h1>
+  <h1 id="headline">Loading...</h1>
 
   <script>
-    // If the email confirmation link lands on the homepage,
-    // this will process the token and redirect into /admin.
-    (function () {
-      function getHashParams() {
-        var hash = window.location.hash || "";
-        if (!hash) return {};
-        var qs = hash.startsWith("#") ? hash.substring(1) : hash;
-        var p = new URLSearchParams(qs);
-        var obj = {};
-        p.forEach((v, k) => obj[k] = v);
-        return obj;
-      }
-      var params = getHashParams();
-      if (window.netlifyIdentity && (params.confirmation_token || params['confirmation_token'])) {
-        var token = params.confirmation_token || params['confirmation_token'];
-        window.netlifyIdentity.confirm(token)
-          .then(function() {
-            window.location.replace('/admin/');
-          })
-          .catch(function() {
-            // Even if confirm fails (already confirmed), send them to admin
-            window.location.replace('/admin/');
-          });
-      }
-    })();
+    fetch('/content/site.json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('headline').textContent = data.headline;
+      })
+      .catch(error => {
+        document.getElementById('headline').textContent = "Error loading content.";
+        console.error(error);
+      });
   </script>
 </body>
 </html>
