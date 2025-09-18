@@ -35,13 +35,12 @@
       color:var(--white);
       background:var(--black);
       line-height:1.6;
+      font-size: 16px;
     }
     h1,h2,h3{font-family:"Playfair Display", Georgia, "Times New Roman", serif; line-height:1.2; margin:0 0 .5rem}
     p{margin:.5rem 0 1rem}
-
     a{color:var(--blue); text-decoration:none}
     a:hover{opacity:.9}
-
     .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
     .btn{
       display:inline-block; padding:.9rem 1.2rem; border-radius:999px;
@@ -55,9 +54,9 @@
 
     /* Header */
     header{
-      position:sticky; top:0; z-index:50;
+      position:fixed; top:0; left:0; right:0; z-index:50;
       backdrop-filter:saturate(180%) blur(8px);
-      background:rgba(0,0,0,.7); border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.7);
     }
     .nav{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
     .brand{display:flex; align-items:center; gap:.6rem; color:#fff}
@@ -67,42 +66,56 @@
     }
     .brand__name{font-weight:700; letter-spacing:.5px}
 
-    /* Video & Hero Layout */
-    .video-hero-layout{
-        background: var(--black);
-        padding-bottom: 72px;
+    /* New Intro Hero Section */
+    .intro-hero{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      padding-top: 60px; /* To account for the fixed header */
     }
-    .video-container{
-        padding: 0 20px;
-        max-width: var(--maxw);
-        margin: 0 auto;
-        padding-top: 24px;
+    .intro-hero h1{
+      font-size: clamp(3rem, 10vw, 7rem);
+      margin-bottom: 2rem;
     }
-    .video-hero-layout h1{
-        font-size: clamp(2.2rem, 4vw, 3.2rem);
-    }
-    .video-hero-layout p.lead{
-        color:#e8e8e8;
-        font-size:1.05rem;
-    }
-    .badge{
-      display:inline-block; background:rgba(41,121,255,.15); color:#cfe0ff;
-      border:1px solid rgba(41,121,255,.35); padding:.18rem .5rem; border-radius:6px; font-size:.82rem
+    .video-wrapper{
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 2rem;
     }
 
-    /* Sections */
-    section{padding:72px 0; border-top:1px solid rgba(255,255,255,.06)}
-    .section-title{font-size:1.9rem; margin-bottom:12px}
-    .muted{color:#cfcfcf}
-
-    /* How it works */
-    .steps{display:grid; gap:18px; grid-template-columns:repeat(3,1fr); margin-top:22px}
-    .step h3{font-size:1.2rem}
+    /* Main Content Section Below Hero */
+    .main-hero-content{
+        padding-top: 72px;
+        padding-bottom: 64px;
+        background: radial-gradient(1200px 600px at 10% -10%, rgba(41,121,255,.18), transparent 60%), radial-gradient(1000px 500px at 90% 0%, rgba(255,107,53,.14), transparent 60%), var(--black);
+    }
+    .main-hero-content .grid{display:grid; gap:24px; grid-template-columns:1.1fr .9fr}
+    .main-hero-content h1{font-size: clamp(2.2rem, 4vw, 3.2rem);}
+    .main-hero-content p.lead{color:#e8e8e8; font-size:1.05rem}
     .card{
       background:var(--charcoal); border:1px solid rgba(255,255,255,.08);
       border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;
     }
+    .main-hero-content .card{min-height:220px}
+    .badge{
+      display:inline-block; background:rgba(41,121,255,.15); color:#cfe0ff;
+      border:1px solid rgba(41,121,255,.35); padding:.18rem .5rem; border-radius:6px; font-size:.82rem
+    }
     
+    /* Sections */
+    section{padding:72px 0; border-top:1px solid rgba(255,255,255,.06)}
+    .section-title{font-size:1.9rem; margin-bottom:12px}
+    .muted{color:#cfcfcf}
+    
+    /* How it works */
+    .steps{display:grid; gap:18px; grid-template-columns:repeat(3,1fr); margin-top:22px}
+    .step h3{font-size:1.2rem}
+
     /* Pricing */
     .pricing{display:grid; gap:20px; grid-template-columns:repeat(3,1fr); margin-top:24px}
     .price-card{padding:24px}
@@ -144,7 +157,8 @@
 
     /* Responsive */
     @media (max-width: 980px){
-      .steps, .pricing, .proof-grid, .about, .booking{grid-template-columns:1fr}
+      .main-hero-content .grid, .steps, .pricing, .proof-grid, .about, .booking{grid-template-columns:1fr}
+      .main-hero-content{padding:72px 0 48px}
     }
   </style>
 </head>
@@ -162,8 +176,9 @@
     </div>
   </header>
 
-  <main id="top" class="video-hero-layout">
-    <div class="video-container">
+  <main id="top" class="intro-hero">
+    <h1>MVM Studios</h1>
+    <div class="video-wrapper">
       <div style="position: relative; padding-top: 56.25%;">
         <iframe
           src="https://customer-oixmce71ng7351ia.cloudflarestream.com/db0c25ff3b83df94350d83caae35e577/iframe?muted=true&preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-oixmce71ng7351ia.cloudflarestream.com%2Fdb0c25ff3b83df94350d83caae35e577%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
@@ -174,18 +189,33 @@
         ></iframe>
       </div>
     </div>
-    <div class="container" style="padding-top: 40px">
-        <p><span class="badge">One shoot → weeks of content</span></p>
-        <h1>One Shoot. A Month of Content. Zero Headaches.</h1>
-        <p class="lead">
-          Built for San Diego businesses. From one monthly shoot, we deliver weeks of content that tells your story—planned, produced, captioned, scheduled, and reported.
-        </p>
-        <div style="display:flex; gap:12px; margin-top:16px">
-          <a class="btn" href="#booking">Book a Strategy Call</a>
-          <a class="btn btn-outline" href="#packages">See Packages</a>
+  </main>
+
+  <section class="main-hero-content">
+    <div class="container">
+      <div class="grid">
+        <div>
+          <p><span class="badge">One shoot → weeks of content</span></p>
+          <h1>One Shoot. A Month of Content. Zero Headaches.</h1>
+          <p class="lead">
+            We specialize in <strong>dentists</strong> and <strong>car dealerships</strong>.
+            One monthly shoot becomes weeks of strategic, on-brand posts—planned, edited, captioned, scheduled, and reported.
+          </p>
+          <div style="display:flex; gap:12px; margin-top:16px">
+            <a class="btn" href="#booking">Book a Strategy Call</a>
+            <a class="btn btn-outline" href="#packages">See Packages</a>
+          </div>
+          <p class="muted" style="margin-top:12px">Serving San Diego & SoCal • Remote options available</p>
+        </div>
+        <div class="card" aria-label="Highlights">
+          <p><span class="badge">Outcome</span></p>
+          <h3 style="margin-top:6px">Consistent, professional presence without stealing your time.</h3>
+          <p class="muted">You run the business. We run the content machine—planning, capture, edits, captions, scheduling, analytics.</p>
+          <p class="muted">No guesswork. No missed weeks. No “what do we post?”</p>
         </div>
       </div>
-  </main>
+    </div>
+  </section>
 
   <section id="how">
     <div class="container">
