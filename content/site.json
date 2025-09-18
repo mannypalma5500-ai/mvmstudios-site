@@ -1,1 +1,7 @@
-{ "headline": "MVM Studios — One Shoot. A Month of Content. Zero Headaches." }
+{
+  "headline": "MVM Studios — One Shoot. A Month of Content. Zero Headaches.",
+  "subheadline": "We turn a single monthly shoot into 30+ strategic posts that sound like you and grow your pipeline.",
+  "buttonText": "Book a Strategy Call",
+  "buttonLink": "#booking",
+  "image": "/static/uploads/hero.jpg"
+}
